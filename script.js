@@ -180,6 +180,7 @@ async function userHistory() {
         toBlock: contract.lastBlock
     });
     for(var i = events.length-1; i >= 0; i--) {
+        console.log(events[i]);
         
         if(events[i].returnValues[1] === accounts[0]) {
             var hist = document.createElement("div");           
@@ -195,7 +196,8 @@ async function userHistory() {
             hist.innerHTML += '<div style="border-top: 1px solid lightgray"><img src="SantiCoin.jpg" width="30" height="height" class="logo"></div>';
             
             hist.innerHTML += '<div class="history-center-div"><img class="history-text" src="planeR.svg" width="40" height="25"></div>';
-            hist.innerHTML += '<h2 class="history-number-r">+'+events[i].returnValues[2]+"</h2>";         
+            hist.innerHTML += '<h2 class="history-number-r">+'+events[i].returnValues[2]+"</h2>";   
+            document.getElementById("history").appendChild(hist);       
         }
         else if(events[i].returnValues[0] === accounts[0]) {
             var hist = document.createElement("div");           
@@ -212,8 +214,9 @@ async function userHistory() {
             
             hist.innerHTML += '<div class="history-center-div"><img class="history-text" src="planeS.svg" width="40" height="25"></div>';
             hist.innerHTML += '<h2 class="history-number-s">-'+events[i].returnValues[2]+"</h2>";
+            document.getElementById("history").appendChild(hist); 
         }
-        document.getElementById("history").appendChild(hist); 
+        
     }
     
 }
