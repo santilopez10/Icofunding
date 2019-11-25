@@ -32,7 +32,7 @@ window.addEventListener("load", async function() {
 async function getBalanceOf() {
     var address = document.getElementById("addressB").value; 
     var balance = await contract.methods.balanceOf(address).call();
-    // document.getElementsByClassName("site")[0].innerHTML += '<div class="alert"><div class="alert-box">hello</div></div>"';
+    document.getElementsByClassName("site")[0].innerHTML += '<div class="alert"></div><div class="alert-box">hello</div>';
     alert("Address: " + address + "\nBalance: " + balance);
 } 
 
