@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body class="site">
+    <div class="header">
+        <a href="#"style="text-decoration: none">
+            <img class="logo" src="SantiCoin.jpg" width="30" height="30" alt=""> 
+        </a>
+        <a href="#" class="title">
+            Santi Coin Wallet (SAN)
+        </a>
+    </div>
+    <div class="container">
+        <div class="options" id="options">
+            <a class="listItem active" onclick="toggleUser(this)" href="#" id="b">Balance of Wallet</a>
+            <a class="listItem" onclick="toggleUser(this)" href="#" id="s">Send San</a>
+            <a class="listItem" onclick="toggleUser(this)" href="#" id="a">Approve Account</a>
+            <a class="listItem" onclick="toggleUser(this)" href="#" id="t">Transfer from Account</a>
+            <a class="listItem" onclick="toggleUser(this)" href="#" id="p">Purchase Tokens</a>
+        </div>
+        <div class="content" id="content">
+            <div id="bt" class="content-text"> 
+                <p>Address</p>
+                <input type="text" id="addressB">
+                <a class="content-button" onclick="getBalanceOf()" href="#">Balance</a>
+            </div>
+            <div id="st" class="content-text">
+                <p>Receiver</p>
+                <input type="text" id="addressS">
+
+                <p>Amount</p>
+                <input type="number" id="amountS">
+                <a class="content-button" onclick="sendSan()" href="#">Send</a>
+            </div>
+            <div id="at" class="content-text">
+                <p>Address</p>
+                <input type="text" id="addressA">
+
+                <p>Amount</p>
+                <input type="number" id="amountA">
+                <a class="content-button" onclick="approve()" href="#">Approve</a>
+            </div>
+            <div id="tt" class="content-text">
+                <p>From Address</p>
+                <input type="text" id="fromTF">
+            
+                <p>To Address</p>
+                <input type="text" id="toTF">
+            
+                <p>Amount</p>
+                <input type="number" id="amountTF">
+                <a class="content-button" onclick="transferFrom()" href="#">Transfer</a>
+            </div>
+            <div id="pt" class="content-text">
+                <p>Amount To Spend</p>
+                <input type="number" id="moneySent">
+                <a class="content-button" onclick="purchaseToken()" href="#">Purchase</a>
+            </div>
+        </div>
+        <div class="wallet wallet-grid" id="user">
+            <div style="border-top:none">
+                <p class="wallet-text">Wallet</p>
+                <text class="wallet-small-text" id="userWallet" style="display:inline"></text>
+                <a onclick="copyAddress()" href="#" class="copy">
+                    <img src="copy.svg" width="12" height="15" alt="">
+                </a>
+                <p class="popuptext" id="popup">Copy to Clipboard</p>
+            </div>
+            
+            <div>
+                <img class="logo" src="SantiCoin.jpg" width="30" height="30" alt="">
+                <text id="userBalance" class="wallet-text"></text>
+            </div>
+            <div class="whitelist">
+                <ul class="whitelist">
+                    <li class="wallet-text" id="whitelist-text"></li>
+                </ul>
+            </div> 
+        </div>
+        <div class="history" id="history">
+                <p class="log-text">History</p>
+        </div>
+    </div>
+    
+</body>
+</html>
