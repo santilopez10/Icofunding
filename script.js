@@ -32,8 +32,9 @@ window.addEventListener("load", async function() {
 async function getBalanceOf() {
     var address = document.getElementById("addressB").value; 
     var balance = await contract.methods.balanceOf(address).call();
-    document.getElementsByClassName("site")[0].innerHTML += '<div class="alert"></div><div class="alert-box">hello</div>';
-    alert("Address: " + address + "\nBalance: " + balance);
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Address:<br>' +address+ '<br><br>Balance:<br>' +balance;
 } 
 
 async function sendSan() {
@@ -229,4 +230,9 @@ async function copyAddress() {
     });
     var popup = document.getElementById("popup");
     popup.innerText = "Copied!";
+}
+
+function closeAlert() { 
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("alert").style.display = "none";
 }
