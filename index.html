@@ -25,7 +25,7 @@
             <a class="listItem" onclick="toggleUser(this)" href="#" id="s">Send</a>
             <a class="listItem" onclick="toggleUser(this)" href="#" id="a">Approve</a>
             <a class="listItem" onclick="toggleUser(this)" href="#" id="t">Transfer</a>
-            <a class="listItem" onclick="toggleUser(this)" href="#" id="p">Purchase</a>
+            <a class="listItem" onclick="toggleUser(this); loadPrice()" href="#" id="p">Purchase</a>
         </div>
         <div class="content" id="content">
             <div id="bt" class="content-text"> 
@@ -50,18 +50,21 @@
                 <a class="content-button" onclick="approve()" href="#">Approve</a>
             </div>
             <div id="tt" class="content-text">
-                <p>From Address</p>
+                <p>From Address <text id="allowance"></text></p>
                 <input type="text" id="fromTF">
-            
-                <p>To Address</p>
-                <input type="text" id="toTF">
-            
-                <p>Amount</p>
-                <input type="number" id="amountTF">
-                <a class="content-button" onclick="transferFrom()" href="#">Transfer</a>
+                <a class="content-button" onclick="showDetails()" href="#">Select</a>
+                <div id="transferDetails">
+                    <p>To Address</p>
+                    <input type="text" id="toTF">
+                
+                    <p>Amount</p>
+                    <input type="number" id="amountTF">
+                    <a class="content-button" onclick="transferFrom()" href="#">Transfer</a>
+                </div>
             </div>
             <div id="pt" class="content-text">
-                <p>Amount To Spend</p>
+                
+                <p>Amount To Spend<text id="price"></text></p>
                 <input type="number" id="moneySent">
                 <a class="content-button" onclick="purchaseToken()" href="#">Purchase</a>
             </div>

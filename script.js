@@ -46,7 +46,9 @@ async function sendSan() {
     var completed = await contract.methods.transfer(address, amount).send({from:sender});
     console.log(completed);
     
-    alert("Amount Sent: " + amount + " wei\nFrom Address: " + sender + "\nTo Address: " + address);
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Sent:<br>' +amount+ '<br><br>To Address:<br>' +address+ '<br><br>From Address:<br>' +sender;
 }
 
 async function approve() {
@@ -58,7 +60,9 @@ async function approve() {
     var completed = await contract.methods.approve(address, amount).send({from:sender});
     console.log(completed);
 
-    alert("Wallet: " + sender + " Approved Wallet: " + addressA + " For The Amount Of " + amountA);
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Wallet:<br>' +sender+ '<br><br>Approved Wallet:<br>' +address+ '<br><br>Approval Amount:<br>' +amount;
 }
 
 async function transferFrom() {
@@ -71,7 +75,18 @@ async function transferFrom() {
     var completed = await contract.methods.transferFrom(from, to, amount).send({from:sender});
     console.log(completed);
     
-    alert("Wallet: " +sender+ "\nSent " +amountTF+ "\nFrom Wallet: " +fromTF+ "\nTo Wallet: " +toTF);
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Wallet:<br>' +sender+ '<br><br>Sent:<br>' +amount+ '<br><br>From Address:<br>' +from+ '<br><br>To Address:<br>' +to;
+}
+
+async function showDetails() {
+    accounts = await web3.eth.getAccounts();
+    var sender = accounts[0];
+    var from = document.getElementById("fromTF").value;
+    var approvalAmount = await contract.methods.allowance(sender, from).call();
+    document.getElementById("allowance").innerHTML = "Allowance: " +approvalAmount+ " SAN";
+    document.getElementById("transferDetails").style.visibility = "visible";    
 }
 
 async function purchaseToken() {
@@ -82,7 +97,14 @@ async function purchaseToken() {
     var completed = await contract.methods.purchaseToken().send({from:sender, value:amount});
     console.log(completed);
 
-    alert(amount+ " Wei Sent To Purchase Tokens.")
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = amount+ ' Wei<br>Sent to Purchase Tokens';
+}
+
+async function loadPrice() {
+    var price = await contract.methods.valueToken().call();
+    document.getElementById("price").innerHTML = "Current Price: " +price+ " Wei";
 }
 
 function toggleUser(element) {
@@ -236,3 +258,4 @@ function closeAlert() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("alert").style.display = "none";
 }
+
