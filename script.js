@@ -102,11 +102,6 @@ async function purchaseToken() {
     document.getElementById("alert-text").innerHTML = amount+ ' Wei<br>Sent to Purchase Tokens';
 }
 
-async function loadPrice() {
-    var price = await contract.methods.valueToken().call();
-    document.getElementById("price").innerHTML = "Current Price: " +price+ " Wei";
-}
-
 function toggleUser(element) {
     var kids = document.getElementById("options").children;
     for(var i = 0; i < kids.length; i++) {
@@ -133,14 +128,20 @@ async function createTokens() {
     var completed = await contract.methods.newTokens(address, amount).send({from:sender});
     console.log(completed);
     
-    alert(amount + " Tokens Created And Sent To Address: " + address);
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = amount+ ' Tokens Created<br>Sent To Wallet: ' +address;
 }
 
 async function setTokenPrice() {
     accounts = await web3.eth.getAccounts();
     var sender = accounts[0];
-    var price = document.getElementById("price").value;
+    var price = document.getElementById("newPrice").value;
     var completed = await contract.methods.setTokenPrice(price).send({from:sender});
+
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Token Price Set To:<br>' +price;
 }
 
 async function withdraw() {
@@ -151,7 +152,9 @@ async function withdraw() {
     var completed = await contract.methods.withdraw(amount).send({from:sender});
     console.log(completed);
     
-    alert("Wallet: " +sender+ " Withdrew " +amountW);
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Wallet:<br>' +sender+ '<br><br>Withdrew:<br>' +amount;
 }
 
 async function whitelistAddress() {
@@ -162,7 +165,9 @@ async function whitelistAddress() {
     var completed = contract.methods.whitelist(whitelist).send({from:sender});
     console.log(completed);
     
-    alert("Wallet: " +whitelist+ "\nAdded to Whitelist");
+    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("alert").style.display = "block";
+    document.getElementById("alert-text").innerHTML = 'Wallet:<br>' +whitelist+ '<br>Added to Whitelist';
 }
 
 function toggleAdmin(element) {
@@ -259,3 +264,7 @@ function closeAlert() {
     document.getElementById("alert").style.display = "none";
 }
 
+async function loadPrice() {
+    var price = await contract.methods.valueToken().call();
+    document.getElementById("price").innerHTML = "Current Price: " +price+ " Wei";
+}

@@ -26,7 +26,7 @@
     <div  class="container">
         <div class="options" id="options">
             <a class="listItem active" onclick="toggleAdmin(this)" href="#" id="e">Emit New Tokens</a>
-            <a class="listItem" onclick="toggleAdmin(this)" href="#" id="s">Set Token Price</a>
+            <a class="listItem" onclick="toggleAdmin(this); loadPrice()" href="#" id="s">Set Token Price</a>
             <a class="listItem" onclick="toggleAdmin(this)" href="#" id="w">Withdraw</a>
             <a class="listItem" onclick="toggleAdmin(this)" href="#" id="wl">Add to Whitelist</a>
         </div>
@@ -40,8 +40,8 @@
                 <a class="content-button" onclick="createTokens()" href="#">Emit</a>
             </div>
             <div id="sa" class="content-text">
-                <p>New Price:</p>
-                <input type="number" id="price">
+                <p>New Price:<text id="price"></text></p>
+                <input type="number" id="newPrice">
                 <a class="content-button" onclick="setTokenPrice()" href="#">Set</a>
             </div>
             <div id="wa" class="content-text">
@@ -76,6 +76,12 @@
         </div>
         <div class="history" id="history">
                 <p class="log-text">History</p>
+        </div>
+        <div class="alert-overlay" id="overlay">
+            <div class="alert-box" id="alert">
+                <a class="close" id="close" href="#" onclick="closeAlert()">&times;</a>
+                <p class="alert-text" id="alert-text"></p>
+            </div>
         </div>
     </div>
 </body>
