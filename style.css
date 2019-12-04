@@ -330,18 +330,16 @@ input[type="text"]:focus, input[type="number"]:focus {
 }
 
 .alert-box {
-    height: 200px;
     margin:10% auto;
     justify-content: center;
     background-color: white;
     border: 2px solid red;
     border-radius: 10px;
     display:none;
-    justify-content: center;
+    box-sizing: content-box;
     position: fixed;
     text-align: center;
-    z-index: 11;
-    padding-block-end: initial;
+    z-index: 11;    
 }
 
 .close {
@@ -366,6 +364,7 @@ input[type="text"]:focus, input[type="number"]:focus {
     top:40%;
     text-align: center;
     padding: 10px 20px;
+    margin-top: 30px;
 }
 
 #bt {
